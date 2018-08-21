@@ -35,11 +35,13 @@ accuracy = clf.score(features_test, labels_test)
 Algorithm for `Bayes Rule`:
 <img width="1345" alt="screen shot 2018-08-20 at 8 12 42 pm" src="https://user-images.githubusercontent.com/13077629/44373104-71cb8800-a4b5-11e8-9f7e-2bb45681abbd.png">
 
-Bayes Theorem is like an evidence test i.e. how much should you trust your evidence. Eg Car Alarm going off. 
+Bayes Theorem is like an evidence test i.e. how much should you trust your evidence. Eg Car Alarm going off.
 
 Bayes theorem basically tells us how we should adjust prior probability to posterior probability based on the evidence.
 
 Naive Bayes called naive as it ignores the order in which words are considered. This is one of its main issue.
+
+One particular feature of Naive Bayes is that it’s a good algorithm for working with text classification. When dealing with text, it’s very common to treat each unique word as a feature, and since the typical person’s vocabulary is many thousands of words, this makes for a large number of features. The relative simplicity of the algorithm and the independent features assumption of Naive Bayes make it a strong performer for classifying texts
 
 ## Reference:
 * [Bayes theorem explained](https://betterexplained.com/articles/an-intuitive-and-short-explanation-of-bayes-theorem/)
