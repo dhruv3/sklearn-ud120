@@ -1,4 +1,4 @@
-# Lesson 2
+# Lesson 2: Naive Bayes
 
 You listen to a song which has `features` like intensity, tempo, genre and gender. Then our brain attaches a `label` like or dislike to this song.
 
