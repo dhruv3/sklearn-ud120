@@ -1,6 +1,6 @@
-#!/usr/bin/python 
+#!/usr/bin/python
 
-""" 
+"""
     Skeleton code for k-means clustering mini-project.
 """
 
@@ -9,6 +9,9 @@
 
 import pickle
 import numpy
+import math
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import sys
 sys.path.append("../tools/")
@@ -40,31 +43,52 @@ def Draw(pred, features, poi, mark_poi=False, name="image.png", f1_name="feature
 
 ### load in the dict of dicts containing all the data on each person in the dataset
 data_dict = pickle.load( open("../final_project/final_project_dataset.pkl", "r") )
-### there's an outlier--remove it! 
+### there's an outlier--remove it!
 data_dict.pop("TOTAL", 0)
+max_ex = 0
+min_ex = sys.maxint
+for key, value in data_dict.iteritems():
+    if not math.isnan(float(value["exercised_stock_options"])) and max_ex < value["exercised_stock_options"] :
+        max_ex = value["exercised_stock_options"]
+    if min_ex > value["exercised_stock_options"]:
+        min_ex = value["exercised_stock_options"]
+print(max_ex)
+print(min_ex)
 
+max_salary = 0
+min_salary = sys.maxint
+for key, value in data_dict.iteritems():
+    if not math.isnan(float(value["salary"])) and max_salary < value["salary"] :
+        max_salary = value["salary"]
+    if min_salary > value["salary"]:
+        min_salary = value["salary"]
+print(max_salary)
+print(min_salary)
 
-### the input features we want to use 
-### can be any key in the person-level dictionary (salary, director_fees, etc.) 
+### the input features we want to use
+### can be any key in the person-level dictionary (salary, director_fees, etc.)
 feature_1 = "salary"
 feature_2 = "exercised_stock_options"
+# feature_3 = "total_payments"
 poi  = "poi"
-features_list = [poi, feature_1, feature_2]
+features_list = [poi, feature_1, feature_2, feature_3]
 data = featureFormat(data_dict, features_list )
 poi, finance_features = targetFeatureSplit( data )
 
 
 ### in the "clustering with 3 features" part of the mini-project,
-### you'll want to change this line to 
+### you'll want to change this line to
 ### for f1, f2, _ in finance_features:
 ### (as it's currently written, the line below assumes 2 features)
-for f1, f2 in finance_features:
+for f1, f2, _ in finance_features:
     plt.scatter( f1, f2 )
 plt.show()
 
 ### cluster here; create predictions of the cluster labels
 ### for the data and store them to a list called pred
-
+from sklearn.cluster import KMeans
+kmeans = KMeans(n_clusters=3, random_state=0).fit(finance_features)
+pred = kmeans.predict(finance_features)
 
 
 
