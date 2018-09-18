@@ -15,9 +15,11 @@ def outlierCleaner(predictions, ages, net_worths):
 
     ### your code goes here
     for idx, pred in enumerate(predictions):
-        tup = (ages[idx], net_worths[idx], pred-net_worths[idx])
+        if pred - net_worths[idx] < 0:
+            tup = (ages[idx], net_worths[idx],  - pred + net_worths[idx])
+        else:
+            tup = (ages[idx], net_worths[idx], pred - net_worths[idx])
         cleaned_data.append(tup)
-    sorted(cleaned_data, key=lambda x: x[2])
-    # print(cleaned_data)
+    cleaned_data = sorted(cleaned_data, key=lambda x: x[2][0])
     cleaned_data = cleaned_data[0: int(len(cleaned_data)*0.9)]
     return cleaned_data
