@@ -2570,3 +2570,5 @@ env/lib/python2.7/site-packages/sklearn/utils/tests/test_utils.py
 env/lib/python2.7/site-packages/sklearn/utils/tests/test_utils.pyc
 env/lib/python2.7/site-packages/sklearn/utils/tests/test_validation.py
 env/lib/python2.7/site-packages/sklearn/utils/tests/test_validation.pyc
+text_learning/your_email_authors.pkl
+text_learning/your_word_data.pkl
