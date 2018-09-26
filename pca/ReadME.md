@@ -29,4 +29,5 @@ PCA as a general algo will take in the group of features then spit out latent fe
 ```python
 from sklearn.decomposition import RandomizedPCA
 pca = RandomizedPCA(n_components=n_components, whiten=True).fit(X_train)
+X_train_pca = pca.transform(X_train)
 ```
